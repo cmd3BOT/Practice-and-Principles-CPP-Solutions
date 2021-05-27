@@ -1,0 +1,77 @@
+[Done lesser exercises as chapter project was quite extensive]
+
+1. When dealing with input and output, how is the variety of devices dealt with in most modern computers?
+    Different devices have device drivers for their input and output. An IO library accesses the drivers
+    and abstracts the input and output process of drivers
+
+2. What, fundamentally, does an istream do?
+    Turns character sequences into values of various types.
+    Gets characters from a console/file/memory
+
+3. What, fundamentally, does an ostream do?
+    Turns values of various types to character sequences and sends them to a console/file/memory.
+
+4. What, fundamentally, is a file?
+    Sequence of bytes
+
+5.  What is a file format?
+    Specifies type of data.
+
+6. Name four different types of devices that can require I/O for a
+program
+    - Calculator program
+    - Reminder program
+    - Tip Calculator
+    - Ping Pong game
+
+7.  What are the four steps for reading a file?
+    - Know the Name
+    - Open for reading
+    - Read in characters
+    - Close (generally implicit)
+
+8. What are the four steps for writing a file?
+    - Name the file
+    - Open for writing
+    - Write objects
+    - Close (generally implicit)
+
+9. Name and define the four stream states.
+    good() Operations successful
+    eof() End of file
+    fail() Something unexpected. [Maybe wrong type]
+    bad() Serious error. Abort I/O
+
+10. Discuss how the following input problems can be resolved:
+    a. The user typing an out-of-range value
+    b. Getting no value (end of file)
+    c. The user typing something of the wrong type
+
+    a. Prompting to re enter value or set default value
+    b. Exit
+    c. Prompting to re enter value or set default value
+
+11. In what way is input usually harder than output?
+    Several error possibilities:
+        Wrong type
+        Bad state
+        etc.
+    And take care of input format
+
+12. In what way is output usually harder than input?
+    Write the data in the correct format
+
+13. Why do we (often) want to separate input and output from
+computation?
+    computation is related to program logic and operations on data
+    Input and output are operations to deal with getting and writing data
+
+14. What are the two most common uses of the istream member
+function clear()?
+    Remove error flag after bad() or fail() to retry input.
+    - Check for terminating character
+    - Retry input
+
+15. What are the usual function declarations for << and >> for a userdefined type X?
+    std::istream& operator<<(std::istream& is, Type& t);
+    std::ostream& operator<<(std::ostream& os, Type& t);
