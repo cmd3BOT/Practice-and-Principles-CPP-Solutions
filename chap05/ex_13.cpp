@@ -11,7 +11,7 @@ calling randint(10). Such an n is called a seed, and different seeds
 give different sequences of random numbers. */
 
 
-#include "../std_lib_facilities.h"
+#include "../includes/std_lib_facilities.h"
 
 vector<char> gen_vector() {
     std::cout << "Enter Seed: ";
