@@ -33,8 +33,8 @@ int main() {
     } else {
         discriminant = sqrt(discriminant);
     }
-    double x1 = (b + discriminant) / (2*a);
-    double x2 = (b - discriminant) / (2*a);
+    double x1 = (-b + discriminant) / (2*a);
+    double x2 = (-b - discriminant) / (2*a);
     std::cout << "The solutions are: " << x1 << ", " << x2;
     return 0;
 }
