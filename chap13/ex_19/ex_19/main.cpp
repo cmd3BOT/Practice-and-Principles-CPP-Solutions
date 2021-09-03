@@ -13,10 +13,12 @@ int main() {
 	Simple_window win{ tl, 600, 400, "Canvas" };
 
 
-	Graph_lib::Star star{ {300, 200}, 150, 50, 200};
-	star.set_fill_color(Color::yellow);
-	win.attach(star);
+	for (int i = 3; i < 100; i += 2) {
+		Graph_lib::Star star{ {300, 200}, i, 100, 200 };
+		star.set_fill_color(Color::cyan);
+		win.attach(star);
+		win.wait_for_button(); // display to screen
+	}
 
 	win.set_label("Canvas");
-	win.wait_for_button(); // display to screen
 }

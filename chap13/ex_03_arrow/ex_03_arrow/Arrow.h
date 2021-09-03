@@ -3,7 +3,7 @@
 #include <cmath>
 
 namespace Graph_lib {
-	struct Arrow : Line {
+	struct Arrow : Line { // A line with 2 inclined arms
 	public:
 		Arrow(Point start, Point end, double angle = 45);
 		void draw_lines() const;
@@ -11,6 +11,6 @@ namespace Graph_lib {
 		Point start;
 		Point end;	
 		double angle;
-		double fraction = 10;
+		double fraction = 2;
 	};	
 };
