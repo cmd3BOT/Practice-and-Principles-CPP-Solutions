@@ -7,17 +7,25 @@
 #include <algorithm>
 
 namespace Graph_lib {
-	B_Tree::B_Tree(Point root, int levels, int max_width, int max_height) : root{ root }, levels{ levels },
+
+	//------------------------------------------------------------------------------
+
+	B_Tree::B_Tree(Point root, int levels, int max_width, int max_height) :
+	    root{ root }, levels{ levels },
 		max_width{ max_width }, max_height{ max_height },
 		tree_sw {
 			root.x - (max_width / 2),
 			root.y + max_height,
 		} { gen_tree(); }
 
-	// Store the Nodes at same level as {Point, Parent_ID} in a vector
-	// Store all levels as different vectors in b_tree
+
+	//------------------------------------------------------------------------------
+
 	void B_Tree::gen_tree() {
+		// Store the Nodes at same level as {Point, Parent_ID} in a vector
+		// Store all levels as different vectors in b_tree
 		if (levels == 0) return;
+
 		int level_height = max_height / levels;
 		int indent_gap = 0;
 		int max_nodes = pow(2, levels - 1);
@@ -44,13 +52,13 @@ namespace Graph_lib {
 		}
 	}
 
+	//------------------------------------------------------------------------------
+
 	void B_Tree::draw_lines() const {
 		for (int i = 0; i < b_tree.size(); i++) {
 			// per level
 			for (int j = 0; j < b_tree[i].size(); j++) {
-				std::vector<Node> level = b_tree[i];
-				
-				Node node = level[j];
+				Node node = b_tree[i][j];
 				Circle c{node.pt, circle_radius };
 				c.draw();
 
@@ -64,6 +72,8 @@ namespace Graph_lib {
 		}
 	}
 
+	//------------------------------------------------------------------------------
+
 	Point B_Tree::node_pos(std::string pos) const {
 		int index = 0;
 		int node_id = 0;
@@ -76,17 +86,25 @@ namespace Graph_lib {
 		return b_tree[b_tree.size() - pos.length()][index].pt;
 	}
 
+	//------------------------------------------------------------------------------
+
 	void B_Tree::print() const {
 		for (int i = 0; i < b_tree.size(); i++) {
 			std::cout << "Level " << levels - i << "\n";
 			std::vector<Node> level = b_tree[i];
+
 			for (int j = 0; j < level.size(); j++)
-				std::cout << "\t[" << j << "] Parent: " << level[j].parent_id << "\tPoint: " << level[j].pt;
+				std::cout << "\t[" << j << "] Parent: " <<
+				level[j].parent_id << "\tPoint: " << level[j].pt;
 		}
 	}
 
+	//------------------------------------------------------------------------------
+
 	B_Tri_Tree::B_Tri_Tree(Point root, int levels, int max_width, int max_height) : 
 		B_Tree(root, levels, max_width, max_height) {}
+
+	//------------------------------------------------------------------------------
 
 	void B_Tri_Tree::draw_lines() const {
 		std::vector<std::vector<Node>> b_tree = B_Tree::get_tree();
@@ -94,15 +112,14 @@ namespace Graph_lib {
 		for (int i = 0; i < b_tree.size(); i++) {
 			// per level
 			for (int j = 0; j < b_tree[i].size(); j++) {
-				std::vector<Node> level = b_tree[i];
-				Node node = level[j];
+				Node node = b_tree[i][j];
 				
-				// Points of triangle
-				Point top{ node.pt.x, node.pt.y - rad };
-				Point right{ node.pt.x + rad * cos(M_PI / 6), node.pt.y + rad*sin(M_PI / 6) };
-				Point left{ node.pt.x - rad * cos(M_PI / 6), node.pt.y + rad * sin(M_PI / 6) };
-
-				Graph_lib::Polygon triangle{ {top, right, left} };
+				Graph_lib::Polygon triangle{{
+					{ node.pt.x, node.pt.y - rad},
+					{ node.pt.x + rad * cos(M_PI/6), node.pt.y + rad*sin(M_PI/6)}, 
+					{ node.pt.x - rad * cos(M_PI / 6), node.pt.y + rad * sin(M_PI / 6)} 
+				}};
+				
 				triangle.draw();
 
 				if (i == b_tree.size() - 1) continue;
