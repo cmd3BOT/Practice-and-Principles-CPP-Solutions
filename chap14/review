@@ -1,0 +1,119 @@
+1. What is an application domain?
+    The area or field of application for which the software is being developed.
+    Eg: Graphics / Weather Analysis / Flight testing 
+
+2. What are ideals for naming?
+    - Directly represent ideas in code (win.attach() vs win.add())
+    - Inambigous
+    - Readable and not too long
+
+3. What can we name?
+    Objects, variables, functions...
+
+4. What services does a Shape offer?
+    Ties graphical objects to Window object
+    Properties of shapes - line, line style, points
+    It has an idea of how to draw shapes
+
+5. How does an abstract class differ from a class that is not abstract?
+    It can only be used as a base class
+    Cannot create an instance of an abstract class
+    abstract class can be used to create an interface (force the child classes to create a method)
+
+6. How can you make a class abstract?
+    Protected constructor or Pure virtual function
+
+7. What is controlled by access control?
+    Scope of class members
+    Visibility of members of base class:
+        public: all functions and derived classes can use its public members
+        protected: only derived classes can use public/protected members of base class
+        private: public and protected members are only visible to base class itself
+
+8. What good can it do to make a data member private?
+    **encapsulation**
+    Maintain data without constantly checking if a modification made was valid 
+    Keep interface and implementation seperate
+    Prevent unintended modification to data
+
+9. What is a virtual function and how does it differ from a non-virtual
+function?
+    A virtual function of a base class allows its derived classes to override the function
+    when the object is passed **generically** as the base class, and the function is called.
+
+    Eg:
+        class Base {
+            public: 
+                virtual void fn() {std::cout << "B::fn()";}
+        };
+
+        class Child : public Base {
+            void fn() override {std::cout << "C::fn()";}
+        };
+
+        void call(Base& b) {
+            b.fn();
+            // without virtual: "B::fn()"
+            // with virtual: "C::fn()"
+        };
+
+        int main() {
+            Base b;
+            Child c;
+            call(c);
+        }
+
+10. What is a base class?
+    Represents a concept applicable to classes derived from it 
+    Allows instantiation
+
+11. What makes a class derived?
+    If it extends a base class.
+    It must override all pure virtual functions
+
+12. What do we mean by object layout?
+    Structure / Format of objects in memory
+
+13. What can you do to make a class easier to test?
+    Keep it simple
+    Using OOP objects
+
+14. What is an inheritance diagram?
+    Diagrams to visualize class relations
+    - Arrows from derived to base classes 
+
+15. What is the difference between a protected member and a private
+one?
+    Protected member is accessible by all inherited classes
+    Private member is accessible only inside the class in which it is defined
+
+16. What members of a class can be accessed from a class derived from
+it?
+    Visibility of members of base class:
+        public: all functions and derived classes can use its public members
+        protected: only derived classes can use public/protected members of base class
+        private: public and protected members are only visible to base class itself
+
+17. How does a pure virtual function differ from other virtual functions?
+    It is necessary to override a pure virtual function
+    This gives it the concept of an "interface"
+
+18. Why would you make a member function virtual?
+    To execute instructions different than generic instructions modelled by the base class
+
+    Eg: Circle uses a special draw_lines() {creating arcs} but not a simple polyline
+
+19. Why would you make a virtual member function pure?
+    To mandate overridding of a specific function in the base class
+    Concept of interface
+
+20. What does overriding mean?
+    To overwrite or specify a different behaviour than the default
+
+21. How does interface inheritance differ from implementation
+inheritance?
+    Interface inheritance: A function expecting a Base Class {Shape} can accept a derived class {Circle}
+    Implementation inheritance: The derived class gets the data and data members from the Base
+
+22. What is object-oriented programming?
+    Using objects and classes in code and applying OOP principles such as inheritance, polymorphism, encapsulation
